@@ -93,8 +93,12 @@ ylabel ('saída');xlabel ('amostra');
 
 legend('real','prevista n passos à frente','prevista um passo à frente');
 
-DAT = iddata(y, u')
+DAT = iddata(y, u');
 
-sys = armax(DAT, [2 2 0 0]);
+sys1 = arx(DAT, [2 2 0])
 figure();
-compare(DAT, sys, 1000);
+compare(DAT, sys1, 1);
+
+sys2 = armax(DAT, [2 2 0 2])
+figure();
+compare(DAT, sys2, 1);
