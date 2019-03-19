@@ -76,11 +76,11 @@ ordem = 2;
 % 
 % legend('real','prevista n passos à frente','prevista um passo à frente');
 
-y_train = y(1:size(y,1)*0.7);
-y_test = y(size(y,1)*0.7: size(y,1));
+y_train = y(1:round(size(y,1)*0.7));
+y_test = y(round(size(y,1)*0.7): size(y,1));
 
-u_train = u(1:size(u,1)*0.7);
-u_test = u(size(u,1)*0.7: size(u,1));
+u_train = u(1:round(size(u,1)*0.7));
+u_test = u(round(size(u,1)*0.7): size(u,1));
 
 DAT_train = iddata(y_train, u_train);
 DAT_test = iddata(y_test, u_test);
@@ -129,10 +129,18 @@ for a=1:3
 end
 
  fprintf("Best Error =  %0.2f %% | Pólos = %d; Zeros = %d \n", best_mse*100, best_a, best_b);
- fprintf("Best System:\n");
+ fprintf("\nBest System:\n");
  best_sys
 
-%figure();
+figure();
+compare(DAT_test, best_sys, 1);
+best_y_est = sim(best_sys, DAT_test);
+
+h_lillie = lillietest(best_y_est.y);
+h_jb = jbtest(best_y_est.y);
+h_ad = adtest(best_y_est.y);
+
+
  % Valdate over test set
 
 % sys2 = armax(DAT, [3 3 0 0]);
