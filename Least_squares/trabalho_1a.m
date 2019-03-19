@@ -94,7 +94,7 @@ for a=1:3
         %systems = [systems ; sys];
         y_est = sim(sys, DAT_test);
         MSE = goodnessOfFit(y_test, y_est.y,'MSE');
-        fprintf("Sistema ARX - Pólos = %d; Zeros = %d | MSE = %0.2f %% \n", a, b, MSE*100);
+        fprintf('Sistema ARX - Pólos = %d; Zeros = %d | MSE = %0.2f %% \n', a, b, MSE*100);
         
         if MSE < best_mse
             best_mse = MSE;
@@ -103,10 +103,10 @@ for a=1:3
             best_sys = sys;
         end
     end
-    fprintf("\n");
+    fprintf('\n');
 end
 
-fprintf("----------------------------------------------------\n\n");
+fprintf('----------------------------------------------------\n\n');
 
 sys = [];
 
@@ -116,7 +116,7 @@ for a=1:3
         %systems = [systems ; sys];
         y_est = sim(sys, DAT_test);
         MSE = goodnessOfFit(y_test, y_est.y,'MSE');
-        fprintf("Sistema ARMAX - Pólos = %d; Zeros = %d | MSE = %0.2f %% \n", a, b, MSE*100);
+        fprintf('Sistema ARMAX - Pólos = %d; Zeros = %d | MSE = %0.2f %% \n', a, b, MSE*100);
         
         if MSE < best_mse
             best_mse = MSE;
@@ -125,19 +125,20 @@ for a=1:3
             best_sys = sys;
         end
     end
-    fprintf("\n");
+    fprintf('\n');
 end
 
- fprintf("Best Error =  %0.2f %% | Pólos = %d; Zeros = %d \n", best_mse*100, best_a, best_b);
- fprintf("Best System:\n");
+ fprintf('Best Error =  %0.2f %% | Pólos = %d; Zeros = %d \n', best_mse*100, best_a, best_b);
+ fprintf('Best System:\n');
  best_sys
 
-%figure();
+figure();
+compare(DAT_test, best_sys,1);
  % Valdate over test set
 
-% sys2 = armax(DAT, [3 3 0 0]);
-% figure();
-% compare(DAT, sys2, 1);
+ %sys2 = armax(DAT, [3 3 0 0]);
+ %figure();
+ %compare(DAT, sys2, 1);
 
 
 
