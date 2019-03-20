@@ -132,20 +132,19 @@ end
  fprintf("\nBest System:\n");
  best_sys
 
-figure();
-compare(DAT_test, best_sys, 1);
+%figure();
+%compare(DAT_test, best_sys, 1);
 best_y_est = sim(best_sys, DAT_test);
 
-h_lillie = lillietest(best_y_est.y);
-h_jb = jbtest(best_y_est.y);
-h_ad = adtest(best_y_est.y);
+[h_lillie, p_lillie] = lillietest(best_y_est.y)
+h_jb = jbtest(best_y_est.y)
+h_ad = adtest(best_y_est.y)
 
+% Hence all of the three normality test returned 0,
+% which means that the null hypotesis CAN`T be discarted
+% it is presumable that the systems behavior is close to
+% a gaussian distribution.
 
- % Valdate over test set
-
-% sys2 = armax(DAT, [3 3 0 0]);
-% figure();
-% compare(DAT, sys2, 1);
 
 
 

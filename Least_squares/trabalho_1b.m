@@ -150,5 +150,11 @@ end
  fprintf("\nBest System:\n");
  best_sys
 
-figure();
-compare(DAT_test, best_sys, 1);
+%figure();
+%compare(DAT_test, best_sys, 1);
+
+best_y_est = sim(best_sys, DAT_test);
+
+[h_lillie, p_lillie] = lillietest(best_y_est.y);
+h_jb = jbtest(best_y_est.y);
+h_ad = adtest(best_y_est.y);
