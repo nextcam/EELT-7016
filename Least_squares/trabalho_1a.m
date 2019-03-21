@@ -1,12 +1,12 @@
-%%%%%%%%%%%%%%%% BRAÇO ROBÓTICO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+%%%%%%%%%%%%%%%% BRAï¿½O ROBï¿½TICO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 
 clear all;  clc; close all;
 
-fprintf('Método dos mínimos quadrados em batelada\n\n');
+fprintf('Mï¿½todo dos mï¿½nimos quadrados em batelada\n\n');
 
 load robot_arm.dat; %dados - ftp://ftp.esat.kuleuven.be/pub/SISTA/data/mechanical/robot_arm.txt 
 
-npts = size(robot_arm,1); % número de amostras a considera
+npts = size(robot_arm,1); % nï¿½mero de amostras a considera
 
 u_in = robot_arm(:,1);
 y_in = robot_arm(:,2);
@@ -18,15 +18,15 @@ ordem = 2;
 
 % for j = 1:npts
 % 
-%     if j<=2
+%   if j<=2
 % 
-%         y1=y(2);  y2=y(1);  u1=u(2);  u2=u(1);
+%       y1=y(2);  y2=y(1);  u1=u(2);  u2=u(1);
 % 
-%     else
+%   else
 % 
-%         y1=y(j-1);  y2=y(j-2);  u1=u(j-1);  u2=u(j-2);
+%       y1=y(j-1);  y2=y(j-2);  u1=u(j-1);  u2=u(j-2);
 % 
-%     end
+%   end
 % 
 %     Y  = [Y; y(j)];
 %     fi = [fi;-y1 -y2 u1 u2];
@@ -72,9 +72,9 @@ ordem = 2;
 % plot(yest,'r');plot(yest2,'b'); 
 % hold off;
 % 
-% ylabel ('saída');xlabel ('amostra');
+% ylabel ('saï¿½da');xlabel ('amostra');
 % 
-% legend('real','prevista n passos à frente','prevista um passo à frente');
+% legend('real','prevista n passos ï¿½ frente','prevista um passo ï¿½ frente');
 
 y_train = y(1:round(size(y,1)*0.7));
 y_test = y(round(size(y,1)*0.7): size(y,1));
@@ -94,7 +94,7 @@ for a=1:3
         %systems = [systems ; sys];
         y_est = sim(sys, DAT_test);
         MSE = goodnessOfFit(y_test, y_est.y,'MSE');
-        fprintf("Sistema ARX - Pólos = %d; Zeros = %d | MSE = %0.2f %% \n", a, b, MSE*100);
+        fprintf("Sistema ARX - Pï¿½los = %d; Zeros = %d | MSE = %0.2f %% \n", a, b, MSE*100);
         
         if MSE < best_mse
             best_mse = MSE;
@@ -103,7 +103,7 @@ for a=1:3
             best_sys = sys;
         end
     end
-    fprintf("\n");
+    fprintf('\n');
 end
 
 fprintf("----------------------------------------------------\n\n");
@@ -116,7 +116,7 @@ for a=1:3
         %systems = [systems ; sys];
         y_est = sim(sys, DAT_test);
         MSE = goodnessOfFit(y_test, y_est.y,'MSE');
-        fprintf("Sistema ARMAX - Pólos = %d; Zeros = %d | MSE = %0.2f %% \n", a, b, MSE*100);
+        fprintf("Sistema ARMAX - Pï¿½los = %d; Zeros = %d | MSE = %0.2f %% \n", a, b, MSE*100);
         
         if MSE < best_mse
             best_mse = MSE;
@@ -128,7 +128,7 @@ for a=1:3
     fprintf("\n");
 end
 
- fprintf("Best Error =  %0.2f %% | Pólos = %d; Zeros = %d \n", best_mse*100, best_a, best_b);
+ fprintf("Best Error =  %0.2f %% | Pï¿½los = %d; Zeros = %d \n", best_mse*100, best_a, best_b);
  fprintf("\nBest System:\n");
  best_sys
 
@@ -144,8 +144,3 @@ h_ad = adtest(best_y_est.y)
 % which means that the null hypotesis CAN`T be discarted
 % it is presumable that the systems behavior is close to
 % a gaussian distribution.
-
-
-
-
-
